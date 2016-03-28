@@ -3,9 +3,12 @@ var serverIP='';
 var motionURL='';
 var motionIP='';
 var play='off';
+var currentPage='';
 
 $( document ).bind( "deviceready", function() {
 	$.mobile.allowCrossDomainPages = true;
+	document.addEventListener("backbutton", backKeyDown, true);
+	document.addEventListener("menubutton", doMenu, false);
 });
 
 $(document).on("pageshow", "#splash",function(event){
@@ -13,25 +16,40 @@ $(document).on("pageshow", "#splash",function(event){
 });
 
 $(document).on("pageshow", "#home",function(event){
+	currentPage='home';
 	check_network();
 });
 
 $(document).on("pageshow", "#rasp_infos",function(event){
+	currentPage='services';
 	getInfos();
 });
 
 $(document).on("pageshow", "#services",function(event){
+	currentPage='services';
 	getStatus('all');
 });
 
 $(document).on("pageshow", "#cam_monitor",function(event){
+	currentPage='setup';
 	getStatus('motion');
 	startMotionLive();
 });
 
 $(document).on("pageshow", "#setup_raspberry",function(event){
+	currentPage='setup';
 	getParams();
 });
+
+function backKeyDown() { 
+    if(currentPage=='home'){
+		exitFromApp();
+	}
+}
+
+function doMenu(){
+	$( "leftpanel" ).panel( "toggle" );
+}
 
 function getParams(){
 	error='';
