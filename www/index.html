@@ -45,7 +45,6 @@
 		<div data-role="page" id="rasp_infos">
 			<div data-role="header" data-position="fixed" data-tap-toggle="false" data-theme='b'>
 				<h1>Raspberry infos</h1>
-				<a href="#leftpanel" class="ui-btn ui-shadow ui-corner-all ui-icon-bars ui-btn-icon-notext">Menu</a>
 			</div>
 			<div data-role="main">   
 				<ul data-role="listview" data-inset="false" data-icon="false" data-divider-theme="b">
@@ -62,12 +61,12 @@
 					</li>
 					<li>
 					<table width=100%>
-						<tr><td width=100>Mémoire:</td><td><div id="ram"><progress value='512' max='2048'></progress> 512/2048 Mo</div></td></tr>
+						<tr><td width=100>Mémoire:</td><td><div id="ram"><progress value='0' max='512'></progress> 0/512 Mo</div></td></tr>
 					</table>
 					</li>
 					<li>
 					<table width=100%>
-						<tr><td width=100>Disque dur:</td><td><div id="hdd"><progress value='30' max='250'></progress> 30/250 Go</div></td></tr>
+						<tr><td width=100>Disque dur:</td><td><div id="hdd"><progress value='0' max='8'></progress> 0/8 Go</div></td></tr>
 					</table>
 					</li>
 					<li data-role="list-divider">Reseau</li>
@@ -88,6 +87,43 @@
 					</li>
 				</ul><br>
 			</div>
+		</div>
+		
+		<div data-role="page" id="services">
+			<div data-role="header" data-position="fixed" data-tap-toggle="false" data-theme='b'>
+				<h1>Services</h1>
+			</div>
+			<div data-role="main">   
+				<ul data-role="listview" data-divider-theme="b" data-icon="false" data-filter="false" data-filter-theme="b" class='showastabs'>
+					<li><a href="#popupfail2ban" data-rel="popup" data-position-to="window" data-transition="pop" id="fail2banStatus"> Fail2ban </a></li>
+					<li><a href="#popupMotion" data-rel="popup" data-position-to="window" data-transition="pop" id="motionStatus"> Motion </a></li>
+
+				</ul>	    
+			</div>
+			<div data-role="popup" id="popupfail2ban" data-theme="b">
+				<div data-role="header" data-theme="b">
+					<h1>Fail2ban</h1>
+				</div>
+				<div data-role="content" data-theme="b">
+					<p>Voulez vous démarrer ou arrêter le service ?</p>
+					<div class='showastabs center nobg'>
+							<a href="#" data-rel="back" data-icon="ok" data-iconpos="left" data-role="button" data-inline="true" onclick="changeState('fail2ban','on','services');">Démarrer</a>
+							<a href="#" data-rel="back" data-icon="delete" data-iconpos="left" data-role="button" data-inline="true" onclick="changeState('fail2ban','off','services');">Arrêter</a>
+					</div>
+				</div>
+		   </div>
+		   <div data-role="popup" id="popupMotion" data-theme="b">
+				<div data-role="header" data-theme="b">
+					<h1>Motion - Vidéo surveillance</h1>
+				</div>
+				<div data-role="content" data-theme="b">
+					<p>Voulez vous démarrer ou arrêter le service ?</p>
+					<div class='showastabs center nobg'>
+							<a href="#" data-rel="back" data-icon="ok" data-iconpos="left" data-role="button" data-inline="true" onclick="changeState('motion','on','services');">Démarrer</a>
+							<a href="#" data-rel="back" data-icon="delete" data-iconpos="left" data-role="button" data-inline="true" onclick="changeState('motion','off','services');">Arrêter</a>
+					</div>
+				</div>
+		   </div>
 		</div>
 		
         <script type="text/javascript" src="cordova.js"></script>
