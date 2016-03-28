@@ -31,7 +31,7 @@ function check_network() {
 	if(states[networkState]=='NONE'){
 		$("#networkStatus").html("<p>Internet connexion needed !</p><a href='#' data-role='button' onclick='check_network();return false;'>Reload</a>");
 	}else{
-		$("#networkStatus").html("You are connected with "+states[networkState]);
+		$("#networkStatus").html("You are connected over <font style='color:blue'>"+states[networkState]+"</font>");
 	}
 			
 	//alert('Connection type:\n ' + states[networkState]);
@@ -59,7 +59,7 @@ function getInfos(){
 		},
 		error      : function() {
 		    //console.error("error");
-		    alert('Impossible de contacter le serveur !');    
+		    alert('Unable to contact server !');    
 		}
 	});
 }
@@ -99,13 +99,13 @@ function getStatus(service){
 		},
 		error      : function() {
 		    //console.error("error");
-		    alert('Impossible de contacter le serveur !');    
+		    alert('Unable to contact server !');    
 		}
 	});
 }
 
 function changeState(service,state,page){
-	showLoader('Veuillez patientez...');	
+	showLoader('Please wait...');	
 	if(page=='surveillance'){
 		$('#liveView').attr('src',"css/blank.png");
 	}
@@ -129,7 +129,7 @@ function changeState(service,state,page){
 		error      : function() {
 		   	 //console.error("error");
 		    	 hideLoader();
-		   	 alert('Impossible de contacter le serveur !');
+		   	 alert('Unable to contact server !');
 		}
 	});
 }
@@ -150,13 +150,13 @@ function startMotionLive(){
 	tmpIMG.onerror=function(){
 		//console.log("load error: ("+tmpIMG.src+")");
 		$('#liveView').attr('src',"css/blank.png");
-		$('#cameraStatus').html("<div class='message error'><i class='icon-exclamation-sign'></i><p>Connexion a la camera impossible !</p></div>");
+		$('#cameraStatus').html("<div style='color:red'>Unable to connect to camera</div>");
 		setTimeout("startMotionLive()",3000);
 	};
 }
 
 function power(mode){
-	showLoader('Veuillez patientez...');	
+	showLoader('Please wait...');	
 	$.ajax({
 		type       : "GET",
 		url        : serverURL,
@@ -168,7 +168,7 @@ function power(mode){
 		},
 		error      : function() {
 		    	 hideLoader();
-		   	 alert('Impossible de contacter le serveur !');
+		   	 alert('Unable to contact server !');
 		}
 	});
 }

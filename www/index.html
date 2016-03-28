@@ -20,17 +20,12 @@
 				<a href="#leftpanel" class="ui-btn ui-shadow ui-corner-all ui-icon-bars ui-btn-icon-notext">Menu</a>
 			</div>
 			<div role="main" class="ui-content jqm-content">
-				<h1>RaspControl</h1>
-				<p>
-					Raspberry remote control
-				</p>
 				<div id="networkStatus"></div>
 			</div>
 			
 			<!-- panel  -->
 			<div data-role="panel" id="leftpanel" data-position="left" data-display="reveal" data-theme="a">
 				<ul data-role="listview" data-icon="false" data-divider-theme="b">
-					<li><a href="#home" data-transition="slide">Home</a></li>
 					<li><a href="#rasp_infos" data-transition="slide">Raspberry infos</a></li>
 					<li><a href="#services" data-transition="slide">Services states</a></li>
 					<li><a href="#cam_monitor" data-transition="slide">Camera monitor</a></li>
@@ -48,41 +43,41 @@
 			</div>
 			<div data-role="main">   
 				<ul data-role="listview" data-inset="false" data-icon="false" data-divider-theme="b">
-					<li data-role="list-divider">Machine</li>
+					<li data-role="list-divider">System</li>
 					<li>
 					<table width=100%>
-						<tr><td width=100>Nom:</td><td><div id="hostname">nom de la machine</div></td></tr>
+						<tr><td width=80>Name:</td><td><div id="hostname">hostname</div></td></tr>
 					</table>
 					</li>
 					<li>
 					<table width=100%>
-						<tr><td width=100>OS:</td><td><div id="os">systeme d'exploitation</div></td></tr>
+						<tr><td width=80>OS:</td><td><div id="os">Operating System</div></td></tr>
 					</table>
 					</li>
 					<li>
 					<table width=100%>
-						<tr><td width=100>Mémoire:</td><td><div id="ram"><progress value='0' max='512'></progress> 0/512 Mo</div></td></tr>
+						<tr><td width=80>RAM:</td><td><div id="ram"><progress value='0' max='512'></progress> 0/512 Mo</div></td></tr>
 					</table>
 					</li>
 					<li>
 					<table width=100%>
-						<tr><td width=100>Disque dur:</td><td><div id="hdd"><progress value='0' max='8'></progress> 0/8 Go</div></td></tr>
+						<tr><td width=80>HDD:</td><td><div id="hdd"><progress value='0' max='8'></progress> 0/8 Go</div></td></tr>
 					</table>
 					</li>
-					<li data-role="list-divider">Reseau</li>
+					<li data-role="list-divider">Network</li>
 					<li>
 					<table width=100%>
-						<tr><td width=100>IP locale:</td><td><div id="iploc">192.168.1.1</div></td></tr>
-					</table>
-					</li>
-					<li>
-					<table width=100%>
-						<tr><td width=100>IP publique:</td><td><div id="ippub">192.168.1.1</div></td></tr>
+						<tr><td width=80>IP local:</td><td><div id="iploc">0.0.0.0</div></td></tr>
 					</table>
 					</li>
 					<li>
 					<table width=100%>
-						<tr><td width=100>MAC:</td><td><div id="mac">00:00:00:00:00:00</div></td></tr>
+						<tr><td width=80>IP public:</td><td><div id="ippub">0.0.0.0</div></td></tr>
+					</table>
+					</li>
+					<li>
+					<table width=100%>
+						<tr><td width=80>MAC:</td><td><div id="mac">00:00:00:00:00:00</div></td></tr>
 					</table>
 					</li>
 				</ul><br>
@@ -91,7 +86,7 @@
 		
 		<div data-role="page" id="services">
 			<div data-role="header" data-position="fixed" data-tap-toggle="false" data-theme='b'>
-				<h1>Services</h1>
+				<h1>Services states</h1>
 			</div>
 			<div data-role="main">   
 				<ul data-role="listview" data-divider-theme="b" data-icon="false" data-filter="false" data-filter-theme="b" class='showastabs'>
@@ -105,25 +100,46 @@
 					<h1>Fail2ban</h1>
 				</div>
 				<div data-role="content" data-theme="b">
-					<p>Voulez vous démarrer ou arrêter le service ?</p>
+					<p>Service control</p>
 					<div class='showastabs center nobg'>
-							<a href="#" data-rel="back" data-icon="ok" data-iconpos="left" data-role="button" data-inline="true" onclick="changeState('fail2ban','on','services');">Démarrer</a>
-							<a href="#" data-rel="back" data-icon="delete" data-iconpos="left" data-role="button" data-inline="true" onclick="changeState('fail2ban','off','services');">Arrêter</a>
+							<a href="#" data-rel="back" data-icon="check" data-iconpos="left" data-role="button" data-inline="true" onclick="changeState('fail2ban','on','services');">Start</a>
+							<a href="#" data-rel="back" data-icon="delete" data-iconpos="left" data-role="button" data-inline="true" onclick="changeState('fail2ban','off','services');">Stop</a>
 					</div>
 				</div>
 		   </div>
 		   <div data-role="popup" id="popupMotion" data-theme="b">
 				<div data-role="header" data-theme="b">
-					<h1>Motion - Vidéo surveillance</h1>
+					<h1>Motion</h1>
 				</div>
 				<div data-role="content" data-theme="b">
-					<p>Voulez vous démarrer ou arrêter le service ?</p>
+					<p>Service control</p>
 					<div class='showastabs center nobg'>
-							<a href="#" data-rel="back" data-icon="ok" data-iconpos="left" data-role="button" data-inline="true" onclick="changeState('motion','on','services');">Démarrer</a>
-							<a href="#" data-rel="back" data-icon="delete" data-iconpos="left" data-role="button" data-inline="true" onclick="changeState('motion','off','services');">Arrêter</a>
+							<a href="#" data-rel="back" data-icon="check" data-iconpos="left" data-role="button" data-inline="true" onclick="changeState('motion','on','services');">Start</a>
+							<a href="#" data-rel="back" data-icon="delete" data-iconpos="left" data-role="button" data-inline="true" onclick="changeState('motion','off','services');">Stop</a>
 					</div>
 				</div>
 		   </div>
+		</div>
+		
+		<div data-role="page" data-theme='b' id="cam_monitor">
+			<div data-role="header" data-position="fixed" data-tap-toggle="false" data-theme='b'>
+				<h1>Camera monitor</h1>
+			</div>
+			<div data-role="main">   
+				<ul data-role="listview" data-inset="false" data-icon="false" data-divider-theme="b">
+					<li data-role="fieldcontain">
+						<center><img id="liveView" src="" width=90%/></center>
+					</li>
+					<li data-role="fieldcontain">
+						<div id="motionStatus"> Motion service</div>
+						<div class='showastabs center nobg'>
+							<a href="#" data-icon="check" data-iconpos="left" data-role="button" data-inline="true" onclick="changeState('motion','on','surveillance');return false;">Start</a>
+							<a href="#" data-icon="delete" data-iconpos="left" data-role="button" data-inline="true" onclick="changeState('motion','off','surveillance');return false;">Stop</a>
+						</div>			
+					</li>
+				</ul>
+				<div id="cameraStatus"></div>	    
+			</div>
 		</div>
 		
         <script type="text/javascript" src="cordova.js"></script>
