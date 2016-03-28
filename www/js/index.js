@@ -3,7 +3,7 @@ var liveMotionURL='http://69freebox69.hd.free.fr:6970/?time=';
 var play='off';
 
 $( document ).bind( "deviceready", function() {
-	
+	$.mobile.allowCrossDomainPages = true;
 });
 
 $(document).on("pageshow", "#home",function(event){
