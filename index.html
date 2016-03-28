@@ -29,7 +29,9 @@
 				<a href="#leftpanel" class="ui-btn ui-shadow ui-corner-all ui-icon-bars ui-btn-icon-notext">Menu</a>
 			</div>
 			<div role="main">
+				<div id="localStorageStatus"></div>
 				<div id="networkStatus"></div>
+				<div id="checkConnectStatus1"></div>
 			</div>
 			
 			<!-- panel  -->
@@ -39,8 +41,8 @@
 					<li><a href="#services" data-transition="slide">Services states</a></li>
 					<li><a href="#cam_monitor" data-transition="slide">Camera monitor</a></li>
 					<li data-role="list-divider">Settings</li>
-					<li>Raspberry</li>
-					<li>Motion</li>
+					<li><a href="#setup_raspberry" data-transition="slide">Raspberry</a></li>
+					<li><a href="#setup_motion" data-transition="slide">Motion</a></li>
 					<li><a href="#" onclick="exitFromApp();return false;">Quit</a></li>
 				</ul>
 			</div><!-- /panel -->
@@ -148,6 +150,45 @@
 					</li>
 				</ul>
 				<div id="cameraStatus"></div>	    
+			</div>
+		</div>
+		
+		<div data-role="page" id="setup_raspberry">
+			<div data-role="header" data-position="fixed" data-tap-toggle="false" data-theme='b'>
+				<h1>Raspberry settings</h1>
+			</div>
+			<div data-role="main">   
+				<ul data-role="listview" data-inset="false" data-icon="false" data-divider-theme="b">
+					<li data-role="list-divider">Public IP</li>
+					<li>
+						<div class="ui-field-contain">
+							<input name="publicIpInput" id="publicIpInput" placeholder="Public IP address" value="" type="text">
+						</div>		
+					</li>
+					<li>
+						<input data-mini="true" value="Save" type="button" onclick="savePublicIp();">
+					</li>
+				</ul>
+				<div id="checkConnectStatus2"></div>    
+			</div>
+		</div>
+		
+		<div data-role="page" id="setup_motion">
+			<div data-role="header" data-position="fixed" data-tap-toggle="false" data-theme='b'>
+				<h1>Motion settings</h1>
+			</div>
+			<div data-role="main">   
+				<ul data-role="listview" data-inset="false" data-icon="false" data-divider-theme="b">
+					<li data-role="list-divider">Motion IP</li>
+					<li>
+						<div class="ui-field-contain">
+							<input name="motionIpInput" id="motionIpInput" placeholder="Motion IP address" value="" type="text">
+						</div>		
+					</li>
+					<li>
+						<input data-mini="true" value="Save" type="button" onclick="saveMotionIp();">
+					</li>
+				</ul>
 			</div>
 		</div>
 		

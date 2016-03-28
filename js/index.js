@@ -1,5 +1,7 @@
-var serverURL='http://69freebox69.hd.free.fr:6969/COMDROID/ajax.php';
-var liveMotionURL='http://69freebox69.hd.free.fr:6970/?time=';
+var serverURL='';
+var serverIP='';
+var motionURL='';
+var motionIP='';
 var play='off';
 
 $( document ).bind( "deviceready", function() {
@@ -27,6 +29,62 @@ $(document).on("pageshow", "#cam_monitor",function(event){
 	startMotionLive();
 });
 
+$(document).on("pageshow", "#setup_raspberry",function(event){
+	getParams();
+});
+
+function getParams(){
+	error='';
+	$('#publicIpInput').val('');
+	$('#motionIpInput').val('');
+	if (storageAvailable('localStorage')) {
+		if(!localStorage.getItem('serverIP')) {
+			error+='<p style="color:red">RaspBerry IP address not set !</p>';
+		}else{
+			serverIP=localStorage.getItem('serverIP');
+			serverURL='http://'+serverIP+'/COMDROID/ajax.php';
+			$('#publicIpInput').val(serverIP);
+		}
+		if(!localStorage.getItem('motionIP')) {
+			error+='<p style="color:red">Motion IP address not set !</p>';
+		}else{
+			motionIP=localStorage.getItem('motionIP');
+			motionURL='http://'+motionIP+'/?time=';
+			$('#motionIpInput').val(motionIP);
+		}
+		if(error==''){
+			checkConnect();
+		}else{
+			$('#localStorageStatus').html(error);
+		}
+	}else{
+		$('#localStorageStatus').html('<p style="color:red">LocalStorage unavailable !</p>');
+	}
+}
+
+function checkConnect(){
+	$.ajax({
+		type       : "GET",
+		url        : serverURL,
+		contentType: "application/json;charset=utf8",  
+        dataType   : 'jsonp',  
+        data       : {action: 'HELLO'},
+		success    : function(response) {
+			if(response.text=='HELLO'){
+				$('#checkConnectStatus1').html('<p style="color:green">Connected to server</p>');
+				$('#checkConnectStatus2').html('<p style="color:green">Connected to server</p>');
+			}else{
+				$('#checkConnectStatus1').html('<p style="color:red">Bad response from server</p>');
+				$('#checkConnectStatus2').html('<p style="color:red">Bad response from server</p>');
+			}
+		},
+		error      : function() {
+		    $('#checkConnectStatus1').html('<p style="color:red">Connect to server failed</p>');
+			$('#checkConnectStatus2').html('<p style="color:red">Connect to server failed</p>');			
+		}
+	});
+}
+
 function check_network() {
 	var networkState = navigator.network.connection.type;
 
@@ -43,9 +101,30 @@ function check_network() {
 		$("#networkStatus").html("<p>Internet connexion needed !</p><a href='#' data-role='button' onclick='check_network();return false;'>Reload</a>");
 	}else{
 		$("#networkStatus").html("You are connected over <font style='color:blue'>"+states[networkState]+"</font>");
+		getParams();
 	}
 			
 	//alert('Connection type:\n ' + states[networkState]);
+}
+
+function savePublicIp(){
+	value=$('#publicIpInput').val();
+	if(value==''){
+		alert('Public IP error !');
+		return false;
+	}
+	localStorage.setItem('serverIP',value);
+	getParams();
+}
+
+function saveMotionIp(){
+	value=$('#motionIpInput').val();
+	if(value==''){
+		alert('Motion IP error !');
+		return false;
+	}
+	localStorage.setItem('motionIP',value);
+	getParams();
 }
 
 function getInfos(){
@@ -150,10 +229,10 @@ function changeState(service,state,page){
 function startMotionLive(){
 	randomNum=Date.now();
 	$('#liveView').attr('src',"css/blank.png");
-	tmpUrl=liveMotionURL+randomNum;
+	tmpUrl=motionURL+randomNum;
 	tmpIMG=new Image();
 	tmpIMG.src=tmpUrl;
-	//console.log("load image: ("+liveMotionURL+randomNum+")");
+	//console.log("load image: ("+motionURL+randomNum+")");
 	tmpIMG.onload= function(){
 		//console.log('image chargée');		
 		$('#liveView').attr('src',tmpIMG.src);
@@ -207,6 +286,19 @@ function showLoader(msg){
 }
 function hideLoader(){
 	$( '#loaderDiv' ).hide().remove();
+}
+
+function storageAvailable(type) {
+	try {
+		var storage = window[type],
+			x = '__storage_test__';
+		storage.setItem(x, x);
+		storage.removeItem(x);
+		return true;
+	}
+	catch(e) {
+		return false;
+	}
 }
 
 jQuery.fn.center = function () {
