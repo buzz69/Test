@@ -4,12 +4,9 @@ var play='off';
 
 $( document ).bind( "deviceready", function() {
 	$.mobile.allowCrossDomainPages = true;
-	var parentElement = document.getElementById('deviceready');
-	var listeningElement = parentElement.querySelector('.listening');
-	var receivedElement = parentElement.querySelector('.received');
+});
 
-	listeningElement.setAttribute('style', 'display:none;');
-	receivedElement.setAttribute('style', 'display:block;');
+$(document).on("pageshow", "#splash",function(event){
 	setTimeout('$.mobile.changePage( "#home", { transition: "slideup"});',2000);
 });
 
