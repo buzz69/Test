@@ -8,7 +8,7 @@ var currentPage='';
 $( document ).bind( "deviceready", function() {
 	$.mobile.allowCrossDomainPages = true;
 	document.addEventListener("backbutton", backKeyDown, true);
-	document.addEventListener("menubutton", doMenu, false);
+	document.addEventListener("menubutton", doMenu, true);
 });
 
 $(document).on("pageshow", "#splash",function(event){
@@ -50,7 +50,7 @@ function backKeyDown() {
 }
 
 function doMenu(){
-	$( "#leftpanel" ).panel( "toggle" );
+	$("#leftpanel").panel( "toggle" );
 }
 
 function getParams(){
