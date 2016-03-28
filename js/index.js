@@ -44,11 +44,13 @@ $(document).on("pageshow", "#setup_raspberry",function(event){
 function backKeyDown() { 
     if(currentPage=='home'){
 		exitFromApp();
+	}else{
+		$.mobile.changePage( "#home", { transition: "slide"});
 	}
 }
 
 function doMenu(){
-	$( "leftpanel" ).panel( "toggle" );
+	$( "#leftpanel" ).panel( "toggle" );
 }
 
 function getParams(){
