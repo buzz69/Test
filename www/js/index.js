@@ -1,3 +1,5 @@
+var serverURL='http://69freebox69.hd.free.fr:6969/COMDROID/ajax.php';
+
 $( document ).bind( "deviceready", function() {
 	
 });
