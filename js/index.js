@@ -53,6 +53,7 @@ function getParams(){
 			$('#motionIpInput').val(motionIP);
 		}
 		if(error==''){
+			$('#localStorageStatus').html('');
 			checkConnect();
 		}else{
 			$('#localStorageStatus').html(error);
@@ -114,7 +115,7 @@ function savePublicIp(){
 		return false;
 	}
 	localStorage.setItem('serverIP',value);
-	getParams();
+	$.mobile.changePage( "#home", { transition: "slide"});
 }
 
 function saveMotionIp(){
@@ -124,7 +125,7 @@ function saveMotionIp(){
 		return false;
 	}
 	localStorage.setItem('motionIP',value);
-	getParams();
+	$.mobile.changePage( "#home", { transition: "slide"});
 }
 
 function getInfos(){
