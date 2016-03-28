@@ -32,7 +32,7 @@
 					<li data-role="list-divider">Settings</li>
 					<li>Raspberry</li>
 					<li>Motion</li>
-					<li>Quit</li>
+					<li><a href="#" onclick="exitFromApp();return false;">Quit</a></li>
 				</ul>
 			</div><!-- /panel -->
 		</div>
@@ -121,7 +121,7 @@
 		   </div>
 		</div>
 		
-		<div data-role="page" data-theme='b' id="cam_monitor">
+		<div data-role="page" id="cam_monitor">
 			<div data-role="header" data-position="fixed" data-tap-toggle="false" data-theme='b'>
 				<h1>Camera monitor</h1>
 			</div>
@@ -131,7 +131,7 @@
 						<center><img id="liveView" src="" width=90%/></center>
 					</li>
 					<li data-role="fieldcontain">
-						<div id="motionStatus"> Motion service</div>
+						<div id="motionStatus2">Motion</div>
 						<div class='showastabs center nobg'>
 							<a href="#" data-icon="check" data-iconpos="left" data-role="button" data-inline="true" onclick="changeState('motion','on','surveillance');return false;">Start</a>
 							<a href="#" data-icon="delete" data-iconpos="left" data-role="button" data-inline="true" onclick="changeState('motion','off','surveillance');return false;">Stop</a>

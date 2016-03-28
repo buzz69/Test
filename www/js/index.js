@@ -1,4 +1,6 @@
 var serverURL='http://69freebox69.hd.free.fr:6969/COMDROID/ajax.php';
+var liveMotionURL='http://69freebox69.hd.free.fr:6970/?time=';
+var play='off';
 
 $( document ).bind( "deviceready", function() {
 	
@@ -14,6 +16,11 @@ $(document).on("pageshow", "#rasp_infos",function(event){
 
 $(document).on("pageshow", "#services",function(event){
 	getStatus('all');
+});
+
+$(document).on("pageshow", "#cam_monitor",function(event){
+	getStatus('motion');
+	startMotionLive();
 });
 
 function check_network() {
@@ -86,6 +93,7 @@ function getStatus(service){
 			if(service=='motion'){
 				if($('#motionStatus')){	
 					$('#motionStatus').html('Motion - '+motionState);
+					$('#motionStatus2').html('Motion - '+motionState);
 				}
 			}
 			if(service=='all'){
@@ -94,6 +102,7 @@ function getStatus(service){
 				}
 				if($('#motionStatus')){	
 					$('#motionStatus').html('Motion - '+motionState);
+					$('#motionStatus2').html('Motion - '+motionState);
 				}
 			}
 		},
@@ -171,6 +180,15 @@ function power(mode){
 		   	 alert('Unable to contact server !');
 		}
 	});
+}
+
+function exitFromApp(){
+	if (navigator.app) {
+	   navigator.app.exitApp();
+	}
+	else if (navigator.device) {
+		navigator.device.exitApp();
+	}
 }
 
 function showLoader(msg){
