@@ -50,6 +50,7 @@ function backKeyDown() {
 }
 
 function doMenu(){
+	alert('menu button');
 	$("#leftpanel").panel( "toggle" );
 }
 
