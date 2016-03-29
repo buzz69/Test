@@ -31,7 +31,7 @@ $(document).on("pageshow", "#services",function(event){
 });
 
 $(document).on("pageshow", "#cam_monitor",function(event){
-	currentPage='setup';
+	currentPage='motion';
 	getStatus('motion');
 	startMotionLive();
 });
@@ -50,7 +50,12 @@ function backKeyDown() {
     if(currentPage=='home'){
 		exitFromApp();
 	}else{
-		$.mobile.changePage( "#home", { transition: "slide"});
+		if(currentPage=='motion'){
+			$('#liveView').attr('src',"css/blank.png");
+			setTimeout('$.mobile.changePage( "#home", { transition: "slide"});',500);
+		}else{
+			$.mobile.changePage( "#home", { transition: "slide"});
+		}
 	}
 }
 
