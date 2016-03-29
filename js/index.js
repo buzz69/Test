@@ -8,11 +8,11 @@ var currentPage='';
 $( document ).bind( "deviceready", function() {
 	$.mobile.allowCrossDomainPages = true;
 	document.addEventListener("backbutton", backKeyDown, true);
-	document.addEventListener("menubutton", doMenu, true);
+	//document.addEventListener("menubutton", doMenu, true);
 });
 
 $(document).on("pageshow", "#splash",function(event){
-	setTimeout('$.mobile.changePage( "#home", { transition: "slideup"});',2000);
+	setTimeout('$.mobile.changePage( "#home", { transition: "slideup"});',1000);
 });
 
 $(document).on("pageshow", "#home",function(event){
@@ -59,10 +59,12 @@ function backKeyDown() {
 	}
 }
 
+/*
 function doMenu(){
 	alert('menu button');
 	$("#leftpanel").panel( "toggle" );
 }
+*/
 
 function getParams(){
 	error='';
@@ -88,9 +90,11 @@ function getParams(){
 			checkConnect();
 		}else{
 			$('#localStorageStatus').html(error);
+			$('#buttonsContainer').hide();
 		}
 	}else{
 		$('#localStorageStatus').html('<p style="color:red">LocalStorage unavailable !</p>');
+		$('#buttonsContainer').hide();
 	}
 }
 
@@ -103,16 +107,19 @@ function checkConnect(){
         data       : {action: 'HELLO'},
 		success    : function(response) {
 			if(response.text=='HELLO'){
-				$('#checkConnectStatus1').html('<p style="color:green">Connected to server</p>');
+				//$('#checkConnectStatus1').html('<p style="color:green">Connected to server</p>');
 				$('#checkConnectStatus2').html('<p style="color:green">Connected to server</p>');
+				$('#buttonsContainer').show();
 			}else{
 				$('#checkConnectStatus1').html('<p style="color:red">Bad response from server</p>');
 				$('#checkConnectStatus2').html('<p style="color:red">Bad response from server</p>');
+				$('#buttonsContainer').hide();
 			}
 		},
 		error      : function() {
 		    $('#checkConnectStatus1').html('<p style="color:red">Connect to server failed</p>');
-			$('#checkConnectStatus2').html('<p style="color:red">Connect to server failed</p>');			
+			$('#checkConnectStatus2').html('<p style="color:red">Connect to server failed</p>');	
+			$('#buttonsContainer').hide();			
 		}
 	});
 }
@@ -131,12 +138,11 @@ function check_network() {
 			
 	if(states[networkState]=='NONE'){
 		$("#networkStatus").html("<p>Internet connexion needed !</p><a href='#' data-role='button' onclick='check_network();return false;'>Reload</a>");
+		$('#buttonsContainer').hide();
 	}else{
-		$("#networkStatus").html("You are connected over <font style='color:blue'>"+states[networkState]+"</font>");
+		//$("#networkStatus").html("You are connected over <font style='color:blue'>"+states[networkState]+"</font>");
 		getParams();
 	}
-			
-	//alert('Connection type:\n ' + states[networkState]);
 }
 
 function savePublicIp(){

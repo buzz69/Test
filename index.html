@@ -32,23 +32,25 @@
 				<div id="localStorageStatus"></div>
 				<div id="networkStatus"></div>
 				<div id="checkConnectStatus1"></div>
-				<ul data-role="listview" data-inset="true">
-					<li><a href="#rasp_infos" data-transition="slide">
-						<img src="img/raspberry.png">
-					<h2>Raspberry infos</h2>
-					<p>System details</p></a>
-					</li>
-					<li><a href="#services" data-transition="slide">
-						<img src="img/settings.png">
-					<h2>Services</h2>
-					<p>Control raspberry services</p></a>
-					</li>
-					<li><a href="#cam_monitor" data-transition="slide">
-						<img src="img/webcam.png">
-					<h2>Camera</h2>
-					<p>Watch live camera</p></a>
-					</li>
-				</ul>
+				<div id="buttonsContainer" style="display:none">
+					<ul data-role="listview" data-inset="true">
+						<li><a href="#rasp_infos" data-transition="slide">
+							<img src="img/raspberry.png">
+						<h2>Raspberry infos</h2>
+						<p>System details</p></a>
+						</li>
+						<li><a href="#services" data-transition="slide">
+							<img src="img/settings.png">
+						<h2>Services</h2>
+						<p>Control raspberry services</p></a>
+						</li>
+						<li><a href="#cam_monitor" data-transition="slide">
+							<img src="img/webcam.png">
+						<h2>Camera</h2>
+						<p>Watch live camera</p></a>
+						</li>
+					</ul>
+				</div>
 			</div>
 			
 			<!-- panel  -->
@@ -172,14 +174,13 @@
 			</div>
 			<div data-role="main">   
 				<ul data-role="listview" data-inset="false" data-icon="false" data-divider-theme="b">
-					<li data-role="list-divider">Public IP</li>
+					<li data-role="list-divider">Raspberry IP</li>
 					<li>
 						<div class="ui-field-contain">
-							<input name="publicIpInput" id="publicIpInput" placeholder="Public IP address" value="" type="text">
+							<input name="publicIpInput" id="publicIpInput" placeholder="Raspberry IP address" value="" type="text">
 						</div>		
-					</li>
-					<li>
-						<input data-mini="true" value="Save" type="button" onclick="savePublicIp();">
+						</br>
+						<input data-icon="check" data-iconpos="left" value="Save" type="button" onclick="savePublicIp();" data-theme='b'>
 					</li>
 				</ul>
 				<div id="checkConnectStatus2"></div>    
@@ -197,9 +198,8 @@
 						<div class="ui-field-contain">
 							<input name="motionIpInput" id="motionIpInput" placeholder="Motion IP address" value="" type="text">
 						</div>		
-					</li>
-					<li>
-						<input data-mini="true" value="Save" type="button" onclick="saveMotionIp();">
+						</br>
+						<input data-icon="check" data-iconpos="left" value="Save" type="button" onclick="saveMotionIp();" data-theme='b'>
 					</li>
 				</ul>
 			</div>
