@@ -5,8 +5,6 @@ var motionIP='';
 var play='off';
 var currentPage='';
 
-navigator.splashscreen.show();
-
 $( document ).bind( "deviceready", function() {
 	$.mobile.allowCrossDomainPages = true;
 	document.addEventListener("backbutton", backKeyDown, true);
@@ -39,6 +37,11 @@ $(document).on("pageshow", "#cam_monitor",function(event){
 });
 
 $(document).on("pageshow", "#setup_raspberry",function(event){
+	currentPage='setup';
+	getParams();
+});
+
+$(document).on("pageshow", "#setup_motion",function(event){
 	currentPage='setup';
 	getParams();
 });
