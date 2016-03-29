@@ -5,6 +5,8 @@ var motionIP='';
 var play='off';
 var currentPage='';
 
+navigator.splashscreen.show();
+
 $( document ).bind( "deviceready", function() {
 	$.mobile.allowCrossDomainPages = true;
 	document.addEventListener("backbutton", backKeyDown, true);
