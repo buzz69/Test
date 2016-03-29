@@ -32,14 +32,28 @@
 				<div id="localStorageStatus"></div>
 				<div id="networkStatus"></div>
 				<div id="checkConnectStatus1"></div>
+				<ul data-role="listview" data-inset="true">
+					<li><a href="#rasp_infos" data-transition="slide">
+						<img src="res/raspberry.png">
+					<h2>Raspberry infos</h2>
+					<p>System details</p></a>
+					</li>
+					<li><a href="#services" data-transition="slide">
+						<img src="res/settings.png">
+					<h2>Services</h2>
+					<p>Control raspberry services</p></a>
+					</li>
+					<li><a href="#cam_monitor" data-transition="slide">
+						<img src="res/webcam.png">
+					<h2>Camera</h2>
+					<p>Watch live camera</p></a>
+					</li>
+				</ul>
 			</div>
 			
 			<!-- panel  -->
 			<div data-role="panel" id="leftpanel" data-position="left" data-display="overlay" data-theme="a">
 				<ul data-role="listview" data-icon="false" data-divider-theme="b">
-					<li><a href="#rasp_infos" data-transition="slide">Raspberry infos</a></li>
-					<li><a href="#services" data-transition="slide">Services states</a></li>
-					<li><a href="#cam_monitor" data-transition="slide">Camera monitor</a></li>
 					<li data-role="list-divider">Settings</li>
 					<li><a href="#setup_raspberry" data-transition="slide">Raspberry</a></li>
 					<li><a href="#setup_motion" data-transition="slide">Motion</a></li>
