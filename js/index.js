@@ -140,7 +140,8 @@ function check_network() {
 		$("#networkStatus").html("<p>Internet connexion needed !</p><a href='#' data-role='button' onclick='check_network();return false;'>Reload</a>");
 		$('#buttonsContainer').hide();
 	}else{
-		//$("#networkStatus").html("You are connected over <font style='color:blue'>"+states[networkState]+"</font>");
+		$("#networkStatus").html("You are connected over <font style='color:blue'>"+states[networkState]+"</font>");
+		setTimeout('$("#networkStatus").html("");',3000);
 		getParams();
 	}
 }
