@@ -140,7 +140,7 @@ function check_network() {
 	states[Connection.NONE]     = 'NONE';
 			
 	if(states[networkState]=='NONE'){
-		$("#networkStatus").html("<p style='color:red'>You're not connected to internet !</p></br><input data-icon='refresh' data-iconpos='left' value='Refresh' type='button' onclick='check_network();' data-theme='b'>");
+		$("#networkStatus").html("<p style='color:red'>You're not connected to internet !</p></br><a href='#' class='ui-btn' onclick='check_network();return false;'>Refresh</a>");
 		$("#statusBar").html('<h4 style="text-align:center;color:red">Not connected</h4>');
 		$('#buttonsContainer').hide();
 	}else{
