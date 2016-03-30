@@ -90,6 +90,7 @@ function getParams(){
 			checkConnect();
 		}else{
 			$('#localStorageStatus').html(error);
+			$("#statusBar").html('<h4 style="text-align:center;color:red">Settings error</h4>');
 			$('#buttonsContainer').hide();
 		}
 	}else{
@@ -107,18 +108,20 @@ function checkConnect(){
         data       : {action: 'HELLO'},
 		success    : function(response) {
 			if(response.text=='HELLO'){
-				//$('#checkConnectStatus1').html('<p style="color:green">Connected to server</p>');
-				$('#checkConnectStatus2').html('<p style="color:green">Connected to server</p>');
+				//$('#checkConnectStatus1').html('<p style="color:green">Connected to raspberry</p>');
+				$('#checkConnectStatus2').html('<p style="color:green">Connected to raspberry</p>');
 				$('#buttonsContainer').show();
 			}else{
-				$('#checkConnectStatus1').html('<p style="color:red">Bad response from server</p>');
-				$('#checkConnectStatus2').html('<p style="color:red">Bad response from server</p>');
+				$('#checkConnectStatus1').html('<p style="color:red">Bad reply from raspberry</p>');
+				$('#checkConnectStatus2').html('<p style="color:red">Bad reply from raspberry</p>');
+				$("#statusBar").html('<h4 style="text-align:center;color:red">Raspberry connexion error</h4>');
 				$('#buttonsContainer').hide();
 			}
 		},
 		error      : function() {
-		    $('#checkConnectStatus1').html('<p style="color:red">Connect to server failed</p>');
-			$('#checkConnectStatus2').html('<p style="color:red">Connect to server failed</p>');	
+		    $('#checkConnectStatus1').html('<p style="color:red">Connect to raspberry failed</p>');
+			$('#checkConnectStatus2').html('<p style="color:red">Connect to raspberry failed</p>');
+			$("#statusBar").html('<h4 style="text-align:center;color:red">Raspberry connexion error</h4>');
 			$('#buttonsContainer').hide();			
 		}
 	});
@@ -137,11 +140,12 @@ function check_network() {
 	states[Connection.NONE]     = 'NONE';
 			
 	if(states[networkState]=='NONE'){
-		$("#networkStatus").html("<p>Internet connexion needed !</p><a href='#' data-role='button' onclick='check_network();return false;'>Reload</a>");
+		$("#networkStatus").html("<p style='color:red'>You're not connected to internet !</p></br><input data-icon='refresh' data-iconpos='left' value='Refresh' type='button' onclick='check_network();' data-theme='b'>");
+		$("#statusBar").html('<h4 style="text-align:center;color:red">Not connected</h4>');
 		$('#buttonsContainer').hide();
 	}else{
-		$("#networkStatus").html("You are connected over <font style='color:blue'>"+states[networkState]+"</font>");
-		setTimeout('$("#networkStatus").html("");',3000);
+		$("#networkStatus").html('');
+		$("#statusBar").html('<h4 style="text-align:center;">Connected over <font style="color:blue">'+states[networkState]+'</font></h4>');
 		getParams();
 	}
 }
